@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           title: const Text("Nono-Solver!"),
         ),
 
-        body: Mapper(),
+        body: Mapper(gridSize: 10,),
       ),
     );
   }
@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
 
 
 class Mapper extends StatelessWidget{
-  const Mapper({Key? key}) : super(key: key);
+  final int gridSize;
+  const Mapper({Key? key, required this.gridSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -50,17 +51,19 @@ class Mapper extends StatelessWidget{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  HoriSide(),
+                  HoriSide(gridSize: gridSize,),
 
                   Container(
                     height: size*.64,
                     width: size*.64,
                     decoration: BoxDecoration(border: Border.all(width: 5)),
-                    child: Map(size: 10),
+                    child: Map(size: gridSize),
                   ),
                 ],
               ),
             ),
+
+            ElevatedButton(onPressed: ()=>print(size), child: Text("Print"),),
           ],
         ),
       ),
